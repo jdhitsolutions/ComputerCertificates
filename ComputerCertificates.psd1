@@ -11,7 +11,7 @@
 RootModule = 'ComputerCertificates.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.1.0'
+ModuleVersion = '1.0.1.1'
 
 # ID used to uniquely identify this module
 GUID = '132dfc50-8bd3-4c9a-8e2b-fb9ba7d693ae'

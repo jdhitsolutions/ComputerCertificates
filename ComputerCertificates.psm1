@@ -73,6 +73,7 @@ Param(
 [ValidateScript({Test-Path $_})]
 [string]$Path = "C:\Certs",
 [Alias("RunAs")]
+[PSCredential]
 [System.Management.Automation.Credential()]$Credential = [System.Management.Automation.PSCredential]::Empty,
 [ValidateRange(1, 65535)]
 [int]$Port,
@@ -88,13 +89,13 @@ Begin {
     $get = {
      #get server authentication certs that have not expired
      #and get newest one
-     dir Cert:\LocalMachine\My | 
-     where {$_.EnhancedKeyUsageList.FriendlyName -contains "Server Authentication" -AND $_.notAfter -gt (Get-Date) } |
-     Sort NotBefore -Descending | Select -first 1
+     Get-ChildItem -path Cert:\LocalMachine\My | 
+     Where-Object {$_.EnhancedKeyUsageList.FriendlyName -contains "Server Authentication" -AND $_.notAfter -gt (Get-Date) } |
+     Sort-Object NotBefore -Descending | Select-Object -first 1
     }
 
     #remove Path and SkipTest from PSBoundparameters which can then be splatted to Invoke-Command
-    $PSBoundParameters.Remove("Path") | out-Null
+    $PSBoundParameters.Remove("Path") | Out-Null
     $PSBoundParameters.Remove("SkipTest") | Out-Null
 
     #add ErrorAction
@@ -231,6 +232,7 @@ Param(
 [Alias("cn")]
 [string[]]$Computername = $env:COMPUTERNAME,
 [Alias("RunAs")]
+[PSCredential]
 [System.Management.Automation.Credential()]$Credential = [System.Management.Automation.PSCredential]::Empty,
 [ValidateRange(1, 65535)]
 [int]$Port,
@@ -245,13 +247,13 @@ Begin {
     $get = {
      #get server authentication certs that have not expired
      #and get newest one
-     dir Cert:\LocalMachine\My | 
-     where {$_.EnhancedKeyUsageList.FriendlyName -contains "Server Authentication" -AND $_.notAfter -gt (Get-Date) } |
-     Sort NotBefore -Descending | Select -first 1
+     Get-Childitem -path Cert:\LocalMachine\My | 
+     Where-Object {$_.EnhancedKeyUsageList.FriendlyName -contains "Server Authentication" -AND $_.notAfter -gt (Get-Date) } |
+     Sort-Object NotBefore -Descending | Select-Object -first 1
     }
 
     #remove Path from PSBoundparameters which can then be splatted to Invoke-Command
-    $PSBoundParameters.Remove("Path") | out-Null
+    $PSBoundParameters.Remove("Path") | Out-Null
 
     #add ErrorAction
     $PSBoundParameters.Add("ErrorAction","Stop")
