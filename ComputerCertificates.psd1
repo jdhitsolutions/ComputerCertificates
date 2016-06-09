@@ -23,7 +23,7 @@ Author = 'Jeff Hicks'
 CompanyName = 'JDH Information Technology Solutions, Inc.'
 
 # Copyright statement for this module
-Copyright = '(c) 2015 JDH Information Technology Solutions, Inc.'
+Copyright = '(c) 2015-2016 JDH Information Technology Solutions, Inc.'
 
 # Description of the functionality provided by this module
 Description = 'Tools for working machine certificates and thumbprints.'
@@ -65,7 +65,7 @@ RequiredModules = 'PKI'
 # NestedModules = @()
 
 # Functions to export from this module
-FunctionsToExport = '*'
+FunctionsToExport = '*Export-MachineCertificate','Get-MachineCertificateThumbprint'
 
 # Cmdlets to export from this module
 #CmdletsToExport = '*'
@@ -74,7 +74,7 @@ FunctionsToExport = '*'
 #VariablesToExport = '*'
 
 # Aliases to export from this module
-AliasesToExport = '*'
+AliasesToExport = 'emc','gct'
 
 # List of all modules packaged with this module
 # ModuleList = @()

@@ -304,4 +304,4 @@ End {
 Set-Alias -Name emc -Value Export-MachineCertificate
 Set-Alias -Name gct -Value Get-MachineCertificateThumbprint
 
-Export-ModuleMember -Alias * -Function *
+Export-ModuleMember -Alias gmc,gct -Function Export-MachineCertificate,Get-MachineCertificateThumbprint
